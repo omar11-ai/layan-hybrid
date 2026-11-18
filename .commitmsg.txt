@@ -1,0 +1,47 @@
+feat: LAYAN - the anti-scam persona agent, with hybrid inference via Firebase AI Logic
+
+Most people block scam calls. Blocking ends the interaction and gives the
+police nothing: no bank account, no mule name, no payment channel, nothing
+for a police report or a bank's fraud desk.
+
+LAYAN does the opposite. It keeps the scammer on the line. A scripted persona
+- Puan Rina, 54, a retired school teacher from Kepala Batas, Penang - stalls,
+asks naive questions, sounds slightly hard of hearing, and never hangs up.
+Meanwhile an indicator extractor pulls the mule account, the phone number, the
+account name, the payment channel, the amount demanded and the pressure tactic
+out of every message.
+
+The session ends in an evidence pack: the scam archetype fingerprint, the
+full transcript, a deduplicated indicator table, the pressure-tactic timeline,
+and the recommended next actions.
+
+Why the split is hybrid
+-----------------------
+
+The reply path is on-device (Gemini Nano through Firebase AI Logic, falling
+back to the cloud model, falling back to a deterministic local script),
+because the persona must never stall when the network drops - which is
+exactly when a scammer pushes hardest.
+
+The evidence path is cloud-first (Firestore, Auth, App Check), because the
+evidence has to be durable, auditable and shareable. If the phone dies
+mid-engagement, the cloud still has the session and the indicator timeline.
+
+The UI states honestly which path produced each reply: ON_DEVICE or CLOUD.
+
+What is in here
+---------------
+
+- src/engine/ - the persona engine: archetype selection, the script state
+  machine, turn taking, and the indicator extractor. Pure and deterministic.
+- src/ai.ts - Firebase AI Logic hybrid inference, PREFER_ON_DEVICE with an
+  inCloudParams fallback, and the inferenceSource the UI renders.
+- src/firebase.ts - App Check, anonymous Auth, Firestore and Remote Config.
+- src/cloud.ts - durable session sync.
+- src/App.tsx - the operator dashboard: transcript, indicator timeline, the
+  evidence pack.
+
+The scammer side is a scripted simulator. It makes no telephony calls and
+contacts no real numbers.
+
+Co-Authored-By: Omar Wael <omarwael2035@gmail.com>

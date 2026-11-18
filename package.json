@@ -1,0 +1,33 @@
+{
+  "name": "layan-hybrid",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "LAYAN - the anti-scam persona agent, with on-device + cloud hybrid inference via Firebase AI Logic",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b --noEmit false && vite build",
+    "preview": "vite preview --port 4173",
+    "typecheck": "tsc --noEmit",
+    "deploy": "npm run build && firebase deploy --only hosting"
+  },
+  "dependencies": {
+    "firebase": "^12.5.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "firebase-tools": "^14.0.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.0.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "@firebase/util@1.15.3": true,
+    "protobufjs@7.6.6": true
+  }
+}

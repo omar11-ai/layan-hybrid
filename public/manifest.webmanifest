@@ -1,0 +1,19 @@
+{
+  "name": "LAYAN - Scam Jammer",
+  "short_name": "LAYAN",
+  "description": "Engage reported scam callers instead of blocking them, and turn the call into evidence ready for police.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0c10",
+  "theme_color": "#0a0c10",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
